@@ -86,12 +86,12 @@ jobs:
           mkdir -p assets
           if [ ! -f assets/app_version.json ]; then
             cat > assets/app_version.json <<'JSON'
-{
-  "version": "1.9.4",
-  "version_desc": "Default version created by CI",
-  "prerelease": false
-}
-JSON
+            {
+              "version": "1.9.4",
+              "version_desc": "Default version created by CI",
+              "prerelease": false
+            }
+            JSON
           fi
 
       # 读取版本信息
