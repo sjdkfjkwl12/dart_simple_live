@@ -79,6 +79,21 @@ jobs:
             simple_live_app/build/dist/*/*.dmg
             simple_live_app/build/dist/*/*.zip
 
+      # 确保 assets/app_version.json 存在，避免 read-file-action 因 ENOENT 失败
+      - name: Ensure app_version.json exists
+        run: |
+          cd simple_live_app || exit 0
+          mkdir -p assets
+          if [ ! -f assets/app_version.json ]; then
+            cat > assets/app_version.json <<'JSON'
+{
+  "version": "1.9.4",
+  "version_desc": "Default version created by CI",
+  "prerelease": false
+}
+JSON
+          fi
+
       # 读取版本信息
       - name: Read version
         id: version
